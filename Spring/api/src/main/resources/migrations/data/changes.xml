@@ -5,5 +5,7 @@
     <include file="Product/data-testdata-dml.sql" relativeToChangelogFile="true" />
     <include file="Category/data-testdata-dml.sql" relativeToChangelogFile="true" />
     <include file="Product_Category/data-testdata-dml.sql" relativeToChangelogFile="true" />
+    <include file="State/data-testdata-dml.sql" relativeToChangelogFile="true" />
+    <include file="City/data-testdata-dml.sql" relativeToChangelogFile="true" />
 
 </databaseChangeLog>
