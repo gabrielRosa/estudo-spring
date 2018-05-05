@@ -1,5 +1,7 @@
 package com.gabriel.spring.api.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -16,6 +18,7 @@ public class City implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "state_id")
+    @JsonManagedReference
     private State state;
 
     public City() { }
