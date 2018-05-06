@@ -1,9 +1,13 @@
 package com.gabriel.spring.api.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class CustomerOrder implements Serializable {
@@ -13,6 +17,8 @@ public class CustomerOrder implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date created;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "customerOrder")
@@ -25,6 +31,9 @@ public class CustomerOrder implements Serializable {
     @ManyToOne
     @JoinColumn(name = "delivery_address_id")
     private Address address;
+
+    @OneToMany(mappedBy = "id.customerOrder")
+    private Set<CustomerOrderItem> customerOrderItems = new HashSet<>();
 
     public CustomerOrder() { }
 
@@ -73,6 +82,14 @@ public class CustomerOrder implements Serializable {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Set<CustomerOrderItem> getCustomerOrderItems() {
+        return customerOrderItems;
+    }
+
+    public void setCustomerOrderItems(Set<CustomerOrderItem> customerOrderItems) {
+        this.customerOrderItems = customerOrderItems;
     }
 
     @Override
