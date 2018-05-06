@@ -1,6 +1,6 @@
 package com.gabriel.spring.api.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,8 +18,8 @@ public class State implements Serializable {
     private Integer id;
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "state")
-    @JsonBackReference
     private List<City> cities = new ArrayList<>();
 
     public State() { }

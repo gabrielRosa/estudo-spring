@@ -1,6 +1,6 @@
 package com.gabriel.spring.api.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,9 +20,9 @@ public class Address implements Serializable {
     private String neighborhood;
     private String cep;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    @JsonBackReference
     private Customer customer;
 
     @ManyToOne

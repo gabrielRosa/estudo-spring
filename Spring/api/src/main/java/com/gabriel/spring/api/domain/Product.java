@@ -1,13 +1,12 @@
 package com.gabriel.spring.api.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 public class Product implements Serializable {
@@ -20,10 +19,14 @@ public class Product implements Serializable {
     private String name;
     private BigDecimal price;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "PRODUCT_CATEGORY", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
-    @JsonBackReference
     private List<Category> categories = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "id.product")
+    private Set<CustomerOrderItem> customerOrderItems = new HashSet<>();
 
     public Product() {
     }
@@ -33,6 +36,11 @@ public class Product implements Serializable {
         this.id = id;
         this.name = name;
         this.price = price;
+    }
+
+    @JsonIgnore
+    public List<CustomerOrder> getCustomerOrders() {
+        return getCustomerOrderItems().stream().map(oi -> oi.getCustomerOrder()).collect(Collectors.toList());
     }
 
     public Integer getId() {
@@ -65,6 +73,14 @@ public class Product implements Serializable {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public Set<CustomerOrderItem> getCustomerOrderItems() {
+        return customerOrderItems;
+    }
+
+    public void setCustomerOrderItems(Set<CustomerOrderItem> customerOrderItems) {
+        this.customerOrderItems = customerOrderItems;
     }
 
     @Override
