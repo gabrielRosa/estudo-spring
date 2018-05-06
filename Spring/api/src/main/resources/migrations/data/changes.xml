@@ -14,5 +14,6 @@
     <include file="Payment/data-testdata-dml.sql" relativeToChangelogFile="true" />
     <include file="Payment_With_Billet/data-testdata-dml.sql" relativeToChangelogFile="true" />
     <include file="Payment_With_Card/data-testdata-dml.sql" relativeToChangelogFile="true" />
+    <include file="Customer_Order_Item/data-testdata-dml.sql" relativeToChangelogFile="true" />
 
 </databaseChangeLog>
