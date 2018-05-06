@@ -1,5 +1,6 @@
 package com.gabriel.spring.api.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gabriel.spring.api.domain.enums.PaymentStatus;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public abstract class Payment implements Serializable {
     private Integer id;
     private Integer paymentStatus;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "customer_order_id")
     @MapsId
