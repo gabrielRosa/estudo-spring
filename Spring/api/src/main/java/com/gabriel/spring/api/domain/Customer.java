@@ -1,6 +1,6 @@
 package com.gabriel.spring.api.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gabriel.spring.api.domain.enums.CustomerType;
 
 import javax.persistence.*;
@@ -21,13 +21,13 @@ public class Customer implements Serializable {
     private Integer customerType;
 
     @OneToMany(mappedBy = "customer")
-    @JsonManagedReference
     private List<Address> addresses = new ArrayList<>();
 
     @ElementCollection
     @CollectionTable(name = "phones")
     private Set<String> phones = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "customer")
     private List<CustomerOrder> customerOrders = new ArrayList<>();
 

@@ -1,6 +1,5 @@
 package com.gabriel.spring.api.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ public class Category implements Serializable {
     private String name;
 
     @ManyToMany(mappedBy = "categories")
-    @JsonManagedReference
     private List<Product> products = new ArrayList<>();
 
     public Category() { }
