@@ -1,4 +1,4 @@
-package com.gabriel.spring.api.Error;
+package com.gabriel.spring.api.error;
 
 
 import org.springframework.http.HttpStatus;
